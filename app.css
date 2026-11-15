@@ -14,3 +14,9 @@
 #playPP{
 	width: 20%;
 }
+.win{
+	color: green;
+}
+.lose{
+	color: red;
+}
