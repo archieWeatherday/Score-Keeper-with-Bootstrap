@@ -3,7 +3,6 @@ let mySelect = document.querySelector("#scoreNumber");
 let maxNum = 5;
 let p1Score = 0;
 let p2Score = 0;
-let p1Win = false;
 let button1 = document.querySelector("#player1");
 let button2 = document.querySelector("#player2");
 let resetButton = document.querySelector("#reset");
@@ -23,9 +22,8 @@ function clickButton(){
                    //at this point player 1 has won. So disable both buttons.
                    let butt2 = document.querySelector("#player2")
                    butt2.removeEventListener("click",clickSecondButton);
-                   this.disabled = "true";
-                   butt2.disabled = "true";
-		   p1Win = true;
+                   this.disabled = true;
+                   butt2.disabled = true;
                    //finally, update the styles
                    player1score.classList.toggle("win");
                    player2score.classList.toggle("lose");
@@ -40,8 +38,8 @@ function clickSecondButton(){
                   //do the same thing here, except player 2 wins.
                   let butt1 = document.querySelector("#player1");
                   butt1.removeEventListener("click",clickButton);
-                  butt1.disabled = "true";
-                  this.disabled = "true";
+                  butt1.disabled = true;
+                  this.disabled = true;
                   player2score.classList.toggle("win");
                   player1score.classList.toggle("lose");
           }
@@ -59,15 +57,8 @@ function reset(){
           //now i need to remove the classes and set the numbers back to 0.
           player1score.innerText = 0;
           player2score.innerText = 0;
-          if(p1Win){
-                  player1score.classList.remove("win");
-                  player2score.classList.remove("lose");
-          }
-          else{
-                  player1score.classList.remove("lose");
-                  player2score.classList.remove("win");
-          }
-          p1Win = false;
+          player1score.classList.remove("win","lose");
+          player2score.classList.remove("lose","win");
 }
 //Perfect, that works. Lets add an event listener for inpput for the select.
 mySelect.addEventListener("input",function(){
